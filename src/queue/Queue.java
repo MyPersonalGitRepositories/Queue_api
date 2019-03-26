@@ -1,12 +1,12 @@
 package queue;
 
-import lists.MyLinkedList;
+import lists.MyList;
 import lists.exceptions.IllegalStateException;
 import lists.exceptions.NoSuchElementException;
 import lists.exceptions.NullPointerException;
 
 public class Queue<T extends Comparable>{
-    private MyLinkedList<T> list;
+    private MyList<T> list;
     private final int maxSize;
     private boolean areNullElementsAllowed;
     private boolean isSmthAdded = false;
@@ -16,7 +16,7 @@ public class Queue<T extends Comparable>{
     }
 
     public <E extends T> Queue(int maxSize, boolean areNullElementsAllowed){
-        list = (MyLinkedList<T>) new MyLinkedList<E>();
+        list = (MyList<T>) new MyList<E>();
         this.maxSize = maxSize <= 0 ? Integer.MAX_VALUE : maxSize;
         this.areNullElementsAllowed = areNullElementsAllowed;
     }
@@ -103,7 +103,7 @@ public class Queue<T extends Comparable>{
             throw new NoSuchElementException(Queue.class.getMethod("search", Comparable.class));
         }
         int counter = 1;
-        MyLinkedList.Node TEMP = getList().getHEAD();
+        MyList.Node TEMP = getList().getHEAD();
         while (TEMP == getList().getTAIL() || hasNext(TEMP)){
             if(TEMP.getValue().equals(o)){
                 return counter;
@@ -118,7 +118,7 @@ public class Queue<T extends Comparable>{
         return -1;
     }
 
-    private boolean hasNext(MyLinkedList.Node node){
+    private boolean hasNext(MyList.Node node){
         return node != getList().getTAIL();
     }
 
@@ -127,7 +127,7 @@ public class Queue<T extends Comparable>{
         isSmthAdded = false;
     }
 
-    public MyLinkedList<T> getList() {
+    public MyList<T> getList() {
         return list;
     }
 
